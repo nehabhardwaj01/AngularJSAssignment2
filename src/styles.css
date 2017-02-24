@@ -1,6 +1,11 @@
 h1 {
-  color: blue;
+  color: blue !important;
   font-family: Arial, Helvetica, sans-serif;
-  font-size: 300px;
-  align : center;
+  font-size: 400px !important;
+  align : center !important;
+}
+
+input{
+  border-radius: 10px;
+  border-right: 1px solid blue;
 }

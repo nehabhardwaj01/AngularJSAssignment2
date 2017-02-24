@@ -1,9 +1,17 @@
+<style type="text/css">
+    tr{
+        border-radius: 10px;
+        border-bottom: 2px solid green;
+    }
+</style>
+
+
 <div class="row">
     <div class="row col-md-8 col-md-offset-2">
-<table class="table table-striped table-responsive table-bordered ">
+<table class="table table-responsive table-bordered">
     <tr>
         <th>
-            Date
+            Creation Date
         </th>
         <th>
             Title
@@ -15,12 +23,8 @@
             Priority
         </th>
         <th>
+            Changes Required ?
         </th>
-    </tr>
-    <tr *ngIf="!tasks.length">
-        <td colspan="5" class="text-center">
-            No tasks created yet.
-        </td>
     </tr>
     <tr *ngFor="let task of tasks; let i = index">
         <td>
@@ -36,7 +40,7 @@
             {{task.priority}}
         </td>
         <td>
-            <button (click)="edit(i)" class="btn btn-toolbar">Edit</button>
+            <button (click)="edit(i)" class="btn btn-info">Edit</button>
             <button (click)="done(i)" class="btn btn-success">Done</button>
         </td>
     </tr>
