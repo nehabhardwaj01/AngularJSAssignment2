@@ -38,6 +38,6 @@ describe('AppComponent should', function () {
     de = fixture.debugElement.query(By.css('h1'));
   });
 
-  it('should create-task component', () => expect(comp).toBeDefined() );
+  it('should app component', () => expect(comp).toBeDefined() );
 
 });
