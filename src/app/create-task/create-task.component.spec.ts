@@ -15,11 +15,25 @@ import {HttpModule} from '@angular/http';
 import {CreateComponent} from "../create-task/create-task.component";
 import {ShowComponent} from "../show-task/show-task.component";
 import {RouterTestingModule} from "@angular/router/testing";
+import {Observable} from 'rxjs/Observable';
 
-describe('Show-Task component should', function () {
+describe('Create-Task component should', function () {
     let de: DebugElement;
     let comp: CreateComponent;
     let fixture: ComponentFixture<CreateComponent>;
+    let service: AppService;
+    let router: Router;
+    let route:ActivatedRoute;
+    let mockRoute:MockActivatedRoute;
+
+    class MockRouter {
+        navigate():Promise<boolean>{
+            return Promise.resolve(true)
+        }
+    }
+    class MockActivatedRoute {
+        params = Observable.of<any>({'edit':'1'})
+    }
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -35,9 +49,35 @@ describe('Show-Task component should', function () {
     beforeEach(() => {
         fixture = TestBed.createComponent(CreateComponent);
         comp = fixture.componentInstance;
+        comp.task={
+            date: '02/01/2017',
+            title: 'A new Task',
+            description: 'Fake task created for testing',
+            priority: 'medium',
+            _id: '003'
+        }
         de = fixture.debugElement.query(By.css('h1'));
+        service = fixture.debugElement.injector.get(AppService);
+        router = fixture.debugElement.injector.get(Router);
+        route=fixture.debugElement.injector.get(ActivatedRoute);
     });
 
     it('should create create-task component', () => expect(comp).toBeDefined() );
+
+    it('should be able to update data in case of edit', () => {
+        comp.index = '003';
+        spyOn(service, 'update');
+        comp.submit();
+        expect(service.update).toHaveBeenCalled();
+
+    });
+
+    it('should be able to add data in case of create-task', () => {
+        spyOn(service, 'add');
+        comp.submit();
+        expect(service.add).toHaveBeenCalled();
+
+    });
+
 
 });

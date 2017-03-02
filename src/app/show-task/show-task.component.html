@@ -17,11 +17,7 @@
         <th>
         </th>
     </tr>
-    <!--<tr *ngIf="!tasks.length">-->
-        <!--<td colspan="5" class="text-center">-->
-            <!--No tasks created yet.-->
-        <!--</td>-->
-    <!--</tr>-->
+
     <tr *ngFor="let task of tasks; let i = index">
         <td>
             {{task.date}}
